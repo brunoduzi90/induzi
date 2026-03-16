@@ -1,0 +1,28 @@
+{
+    "version": "1.0.0",
+    "date": "2026-03-15",
+    "min_php": "7.4",
+    "download_url": "",
+    "file_size": 0,
+    "sha256": "",
+    "changelog": [
+        {
+            "version": "1.0.0",
+            "date": "2026-03-15",
+            "changes": [
+                "Versao inicial do Induzi",
+                "Sistema de autenticacao com login e recuperacao de senha",
+                "18 modulos guia com componentes interativos",
+                "Dashboard com progresso por modulo",
+                "SPA com roteamento por fragmentos",
+                "Sistema de atualizacao com migracoes, backup e restauracao",
+                "Exportacao de documentacao em Markdown",
+                "Site Audit com 40 verificacoes",
+                "Compartilhamento de projetos",
+                "Notificacoes in-app",
+                "Busca global (Ctrl+K)",
+                "Tema claro/escuro/auto"
+            ]
+        }
+    ]
+}

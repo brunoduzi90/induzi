@@ -1,0 +1,122 @@
+/* ============================================================
+   INDUZI Interactive Components — CSS
+   Styles for tagList, checklist, multiSelect, dropzone,
+   richText, and keyValue components.
+   Uses existing CSS variables for dark/light theme support.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   Shared
+   ------------------------------------------------------------ */
+.ic-wrap { position: relative; }
+
+/* ------------------------------------------------------------
+   1. Tag List
+   ------------------------------------------------------------ */
+.ic-taglist { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 10px; border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg-card, var(--color-white)); min-height: 42px; cursor: text; transition: border-color 0.15s; }
+.ic-taglist:focus-within { border-color: var(--color-accent); }
+.ic-taglist .ic-tag { display: inline-flex; align-items: center; gap: 4px; padding: 3px 8px; border-radius: 4px; background: var(--color-accent); color: #fff; font-size: 0.8rem; font-weight: 500; line-height: 1.4; max-width: 100%; word-break: break-word; }
+.ic-taglist .ic-tag-x { cursor: pointer; opacity: 0.7; font-size: 1rem; line-height: 1; margin-left: 2px; flex-shrink: 0; }
+.ic-taglist .ic-tag-x:hover { opacity: 1; }
+.ic-taglist .ic-tag-input { border: none; outline: none; background: transparent; font-size: 0.85rem; font-family: inherit; color: var(--color-black); min-width: 120px; flex: 1; padding: 2px 0; }
+.ic-taglist .ic-tag-input::placeholder { color: var(--color-gray-light); }
+
+/* ------------------------------------------------------------
+   2. Checklist
+   ------------------------------------------------------------ */
+.ic-checklist { border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg-card, var(--color-white)); overflow: hidden; }
+.ic-checklist-items { list-style: none; margin: 0; padding: 0; }
+.ic-checklist-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--color-border); transition: background 0.1s; cursor: grab; }
+.ic-checklist-item:last-child { border-bottom: none; }
+.ic-checklist-item:hover { background: var(--color-bg); }
+.ic-checklist-item.dragging { opacity: 0.5; background: var(--color-bg); }
+.ic-checklist-item.drag-over { border-top: 2px solid var(--color-accent); }
+.ic-check-grip { color: var(--color-gray-lighter); font-size: 0.75rem; cursor: grab; flex-shrink: 0; user-select: none; }
+.ic-check-cb { width: 16px; height: 16px; accent-color: var(--color-accent); cursor: pointer; flex-shrink: 0; }
+.ic-check-text { flex: 1; font-size: 0.85rem; color: var(--color-black); word-break: break-word; }
+.ic-checklist-item.done .ic-check-text { text-decoration: line-through; color: var(--color-gray-light); }
+.ic-check-remove { cursor: pointer; color: var(--color-gray-light); font-size: 0.95rem; flex-shrink: 0; opacity: 0; transition: opacity 0.15s; }
+.ic-checklist-item:hover .ic-check-remove { opacity: 1; }
+.ic-check-remove:hover { color: var(--color-danger); }
+.ic-checklist-add { display: flex; border-top: 1px solid var(--color-border); }
+.ic-checklist-add input { flex: 1; border: none; outline: none; padding: 8px 12px; font-size: 0.85rem; font-family: inherit; background: transparent; color: var(--color-black); }
+.ic-checklist-add input::placeholder { color: var(--color-gray-light); }
+
+/* ------------------------------------------------------------
+   3. Multi-Select Chips
+   ------------------------------------------------------------ */
+.ic-multiselect { display: flex; flex-wrap: wrap; gap: 8px; }
+.ic-chip { display: inline-flex; align-items: center; padding: 6px 14px; border-radius: 20px; border: 1px solid var(--color-border); background: var(--color-bg-card, var(--color-white)); color: var(--color-gray-dark, #444); font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: all 0.15s; user-select: none; }
+.ic-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.ic-chip.active { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+
+/* ------------------------------------------------------------
+   4. Dropzone
+   ------------------------------------------------------------ */
+.ic-dropzone { border: 2px dashed var(--color-border); border-radius: 8px; padding: 20px; text-align: center; transition: all 0.2s; cursor: pointer; background: var(--color-bg-card, var(--color-white)); }
+.ic-dropzone.dragover { border-color: var(--color-accent); background: rgba(124, 58, 237, 0.05); }
+.ic-dropzone-label { font-size: 0.84rem; color: var(--color-gray); line-height: 1.6; }
+.ic-dropzone-label strong { color: var(--color-accent); }
+.ic-dropzone-input { display: none; }
+.ic-dropzone-thumbs { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+.ic-dropzone-thumb { position: relative; width: 80px; height: 80px; border-radius: 6px; overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg); }
+.ic-dropzone-thumb img { width: 100%; height: 100%; object-fit: cover; }
+.ic-dropzone-thumb-x { position: absolute; top: 2px; right: 2px; width: 20px; height: 20px; border-radius: 50%; background: rgba(0,0,0,0.6); color: #fff; border: none; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.ic-dropzone-thumb-x:hover { background: var(--color-danger); }
+.ic-dropzone-thumb-name { position: absolute; bottom: 0; left: 0; right: 0; padding: 2px 4px; background: rgba(0,0,0,0.5); color: #fff; font-size: 0.6rem; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+
+/* ------------------------------------------------------------
+   5. Key-Value Pairs
+   ------------------------------------------------------------ */
+.ic-keyvalue { border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg-card, var(--color-white)); overflow: hidden; }
+.ic-kv-items { list-style: none; margin: 0; padding: 0; }
+.ic-kv-item { display: flex; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--color-border); align-items: flex-start; }
+.ic-kv-item:last-child { border-bottom: none; }
+.ic-kv-key, .ic-kv-val { flex: 1; border: 1px solid var(--color-border); border-radius: 4px; padding: 6px 10px; font-size: 0.85rem; font-family: inherit; background: var(--color-white); color: var(--color-black); resize: vertical; min-height: 32px; }
+.ic-kv-key { flex: 0.4; }
+.ic-kv-val { flex: 0.6; }
+.ic-kv-key:focus, .ic-kv-val:focus { outline: none; border-color: var(--color-accent); }
+.ic-kv-remove { cursor: pointer; color: var(--color-gray-light); font-size: 0.95rem; flex-shrink: 0; padding: 6px 0; opacity: 0; transition: opacity 0.15s; }
+.ic-kv-item:hover .ic-kv-remove { opacity: 1; }
+.ic-kv-remove:hover { color: var(--color-danger); }
+.ic-kv-add { display: flex; align-items: center; justify-content: center; border-top: 1px solid var(--color-border); padding: 6px; }
+.ic-kv-add button { border: none; background: transparent; color: var(--color-accent); font-size: 0.82rem; font-weight: 600; cursor: pointer; padding: 4px 12px; border-radius: 4px; font-family: inherit; transition: background 0.1s; }
+.ic-kv-add button:hover { background: rgba(124, 58, 237, 0.08); }
+
+/* ------------------------------------------------------------
+   6. Guided (suggestions + templates + checklist + custom)
+   ------------------------------------------------------------ */
+.ic-guided { border: 1px solid var(--color-border); border-radius: 6px; background: var(--color-bg-card, var(--color-white)); overflow: hidden; }
+.ic-guided-suggestions { display: flex; flex-wrap: wrap; gap: 6px; padding: 10px 12px; border-bottom: 1px solid var(--color-border); }
+.ic-guided-chip { display: inline-flex; align-items: center; padding: 5px 12px; border-radius: 16px; border: 1px solid var(--color-border); background: var(--color-bg-card, var(--color-white)); color: var(--color-gray-dark, #444); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.15s; user-select: none; }
+.ic-guided-chip:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.ic-guided-chip.active { background: var(--color-accent); border-color: var(--color-accent); color: #fff; }
+.ic-guided-chip.ic-more { border-style: dashed; font-style: italic; color: var(--color-gray); }
+.ic-guided-chip.ic-more:hover { border-color: var(--color-accent); color: var(--color-accent); }
+.ic-guided-templates { display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 12px; border-bottom: 1px solid var(--color-border); }
+.ic-guided-tpl-btn { display: inline-flex; align-items: center; gap: 4px; padding: 5px 14px; border-radius: 6px; border: 1px solid var(--color-accent); background: transparent; color: var(--color-accent); font-size: 0.8rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.15s; }
+.ic-guided-tpl-btn:hover { background: var(--color-accent); color: #fff; }
+.ic-guided-items { list-style: none; margin: 0; padding: 0; }
+.ic-guided-item { display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--color-border); transition: background 0.1s; cursor: grab; }
+.ic-guided-item:last-child { border-bottom: none; }
+.ic-guided-item:hover { background: var(--color-bg); }
+.ic-guided-item.dragging { opacity: 0.5; background: var(--color-bg); }
+.ic-guided-item.drag-over { border-top: 2px solid var(--color-accent); }
+.ic-guided-item.done .ic-check-text { text-decoration: line-through; color: var(--color-gray-light); }
+.ic-guided-item:hover .ic-check-remove { opacity: 1; }
+.ic-guided-add { display: flex; border-top: 1px solid var(--color-border); }
+.ic-guided-add input { flex: 1; border: none; outline: none; padding: 8px 12px; font-size: 0.85rem; font-family: inherit; background: transparent; color: var(--color-black); }
+.ic-guided-add input::placeholder { color: var(--color-gray-light); }
+
+/* Hide suggestion/template borders when empty */
+.ic-guided-suggestions:empty, .ic-guided-templates:empty { display: none; border: none; padding: 0; }
+
+/* ------------------------------------------------------------
+   Responsive
+   ------------------------------------------------------------ */
+@media (max-width: 600px) {
+    .ic-kv-item { flex-direction: column; gap: 6px; }
+    .ic-kv-key, .ic-kv-val { flex: 1; }
+    .ic-kv-remove { align-self: flex-end; }
+    .ic-dropzone-thumb { width: 60px; height: 60px; }
+}

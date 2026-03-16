@@ -1,0 +1,4 @@
+# Bloquear acesso direto a migracoes
+<IfModule mod_authz_core.c>
+    Require all denied
+</IfModule>

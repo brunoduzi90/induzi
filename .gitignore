@@ -1,0 +1,34 @@
+# Credenciais do banco (gerado pelo install.php)
+config.php
+
+# Diretorio temporario (backups, updates)
+sys_temp/backups/
+sys_temp/update_temp/
+sys_temp/restore_temp/
+sys_temp/remote_update.zip
+sys_temp/*.zip
+
+# Uploads de usuarios
+uploads/users/
+uploads/projects/
+
+# Claude Code
+.claude/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (caso use ferramentas de build no futuro)
+node_modules/
+package-lock.json
+
+# Logs
+*.log
+error_log
