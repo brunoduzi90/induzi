@@ -54,14 +54,24 @@ var SpaRouter = (function() {
 
         if (!cached) {
             try {
-                var res = await IgrisDB.fetch(url);
-                var data = await res.json();
+                var controller = new AbortController();
+                var timeoutId = setTimeout(function() { controller.abort(); }, 20000);
+                var res = await IgrisDB.fetch(url, { signal: controller.signal });
+                clearTimeout(timeoutId);
+                var text = await res.text();
+                try {
+                    var data = JSON.parse(text);
+                } catch (parseErr) {
+                    console.error('SpaRouter: resposta nao e JSON', text.substring(0, 500));
+                    throw new Error('Resposta invalida do servidor');
+                }
                 if (!data.ok) throw new Error(data.msg || 'Erro ao carregar pagina');
                 cached = data;
                 if (_noCache.indexOf(route) < 0) _cache[url] = data;
             } catch (e) {
                 console.error('SpaRouter load error:', e);
-                if (_spaContent) _spaContent.innerHTML = '<div class="container"><h2>Erro ao carregar</h2><p>' + (e.message || 'Tente novamente.') + '</p></div>';
+                var msg = e.name === 'AbortError' ? 'Tempo limite excedido (20s). Tente recarregar a pagina.' : (e.message || 'Tente novamente.');
+                if (_spaContent) _spaContent.innerHTML = '<div class="container" style="padding:40px 20px;text-align:center"><h2 style="margin-bottom:12px">Erro ao carregar</h2><p style="margin-bottom:16px">' + msg + '</p><button class="btn btn-primary" onclick="location.reload()">Recarregar</button></div>';
                 _hideLoading();
                 _loading = false;
                 return;

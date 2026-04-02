@@ -3,8 +3,8 @@
     "date": "2026-04-01",
     "min_php": "7.4",
     "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.2/induzi-update-2.0.2.zip",
-    "file_size": 28777953,
-    "sha256": "e448cdaeb544dffa4ba09940f82b35e16c4da3e433fbdf8936589f712bf8efbf",
+    "file_size": 28782104,
+    "sha256": "75b08d7a58c9e4aed1472b35c43818c7e8d1fbcccc8222599957cae37ca9eda4",
     "changelog": [
         {
             "version": "2.0.2",
