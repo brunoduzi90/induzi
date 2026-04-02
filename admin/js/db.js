@@ -10,6 +10,9 @@ var IgrisDB = (function() {
         opts.headers = opts.headers || {};
         opts.headers['X-CSRF-Token'] = _csrfToken;
         opts.headers['X-Requested-With'] = 'XMLHttpRequest';
+        opts.headers['Accept'] = 'application/json';
+        if (!opts.cache) opts.cache = 'no-store';
+        if (!opts.credentials) opts.credentials = 'same-origin';
 
         var res = await fetch(url, opts);
 

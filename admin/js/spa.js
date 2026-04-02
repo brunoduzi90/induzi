@@ -170,7 +170,42 @@ var SpaRouter = (function() {
             if (!ROUTES[initial]) initial = 'painel';
 
             history.replaceState({ route: initial }, '', _basePath + initial);
-            _loadFragment(initial);
+
+            // SSR: if server pre-rendered the fragment, use it directly (no AJAX)
+            if (window._ssrData) {
+                var ssr = window._ssrData;
+                window._ssrData = null;
+
+                if (ssr.styles) {
+                    _spaStyles = document.createElement('style');
+                    _spaStyles.id = 'spa-page-styles';
+                    _spaStyles.textContent = ssr.styles;
+                    document.head.appendChild(_spaStyles);
+                }
+
+                // HTML is already in #spaContent (rendered by PHP)
+
+                if (ssr.scripts) {
+                    var script = document.createElement('script');
+                    script.textContent = ssr.scripts;
+                    document.body.appendChild(script);
+                    document.body.removeChild(script);
+                }
+
+                _currentRoute = initial;
+                document.title = (ROUTES[initial] ? ROUTES[initial].title : 'Painel') + ' — INDUZI Admin';
+
+                document.querySelectorAll('.icon-strip-btn[data-route]').forEach(function(btn) {
+                    btn.classList.toggle('active', btn.dataset.route === initial);
+                });
+                document.querySelectorAll('.sidebar-menu a[data-route]').forEach(function(a) {
+                    a.classList.toggle('active', a.dataset.route === initial);
+                });
+
+                document.dispatchEvent(new CustomEvent('spa:routechange', { detail: { route: initial } }));
+            } else {
+                _loadFragment(initial);
+            }
         },
 
         navigateTo: navigateTo,

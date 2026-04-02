@@ -48,11 +48,60 @@ function spaPreload(array $data): void {
 }
 
 /**
+ * Captura fragment como array (para embed no app.php — sem exit)
+ */
+function spaFragmentCapture(): ?array {
+    global $_spaIsFragment, $_spaPreloaded;
+    if (!$_spaIsFragment) return null;
+
+    $html = ob_get_clean();
+
+    preg_match_all('/<style[^>]*>(.*?)<\/style>/s', $html, $styleMatches);
+    $styles = implode("\n", $styleMatches[1] ?? []);
+
+    if (preg_match('/<div class="main-content"[^>]*>(.*)/s', $html, $contentMatch)) {
+        $content = $contentMatch[1];
+        $content = preg_replace('/<\/div>(\s*(<style[\s\S]*?<\/style>|<script[\s\S]*?<\/script>|\s)*)$/s', '$1', $content);
+    } else {
+        $content = $html;
+    }
+
+    $content = preg_replace('/<style[^>]*>.*?<\/style>/s', '', $content);
+    $content = preg_replace('/<script[^>]+\bsrc\b[^>]*><\/script>/s', '', $content);
+
+    preg_match_all('/<script(?![^>]*\bsrc\b)[^>]*>(.*?)<\/script>/s', $content, $scriptMatches);
+    $scripts = implode("\n", $scriptMatches[1] ?? []);
+    $content = preg_replace('/<script(?![^>]*\bsrc\b)[^>]*>.*?<\/script>/s', '', $content);
+
+    $content = preg_replace('/<\/?(?:html|head|body|!DOCTYPE)[^>]*>/i', '', $content);
+    $content = preg_replace('/<meta[^>]*>/i', '', $content);
+    $content = preg_replace('/<title[^>]*>.*?<\/title>/si', '', $content);
+    $content = preg_replace('/<link[^>]*>/i', '', $content);
+
+    if ($_spaPreloaded !== null) {
+        $preloadJs = 'var _preloaded=' . json_encode($_spaPreloaded, JSON_UNESCAPED_UNICODE) . ';';
+        $scripts = $preloadJs . "\n" . $scripts;
+    }
+
+    return [
+        'styles'  => trim($styles),
+        'html'    => trim($content),
+        'scripts' => trim($scripts),
+    ];
+}
+
+/**
  * Final do fragmento — chame no final de cada pagina
  */
 function spaFragmentEnd(): void {
-    global $_spaIsFragment, $_spaPreloaded;
+    global $_spaIsFragment, $_spaPreloaded, $_spaEmbedMode;
     if (!$_spaIsFragment) return;
+
+    // Embed mode: capture data and return (no exit) — used by app.php SSR
+    if (!empty($_spaEmbedMode)) {
+        $_spaEmbedMode = spaFragmentCapture();
+        return;
+    }
 
     $html = ob_get_clean();
 
@@ -88,6 +137,9 @@ function spaFragmentEnd(): void {
     }
 
     header('Content-Type: application/json; charset=utf-8');
+    header('Cache-Control: no-store, no-cache, must-revalidate, private');
+    header('Pragma: no-cache');
+    header('X-LiteSpeed-Cache-Control: no-cache');
     echo json_encode([
         'ok'      => true,
         'styles'  => trim($styles),

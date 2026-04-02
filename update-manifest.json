@@ -1,46 +1,42 @@
 {
-    "version": "2.0.3",
+    "version": "2.0.4",
     "date": "2026-04-02",
     "min_php": "7.4",
-    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.3/induzi-update-2.0.3.zip",
-    "file_size": 28782198,
-    "sha256": "53013d15eda98b8d318251a9036fcd6232ea4586eea4b98a2a7ff219cbf29549",
+    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.4/induzi-update-2.0.4.zip",
+    "file_size": 28792955,
+    "sha256": "0363f916ce9969243898919f0c44fb0fd4a7b69c5ee5c26feef615bd0d549f79",
     "changelog": [
+        {
+            "version": "2.0.4",
+            "date": "2026-04-02",
+            "changes": [
+                "Fix: SSR — pagina inicial renderizada server-side (sem AJAX, sem skeleton)",
+                "Fix: Headers anti-cache nos fragments (LiteSpeed/Hostinger)",
+                "Fix: fetch com cache:no-store e credentials:same-origin"
+            ]
+        },
         {
             "version": "2.0.3",
             "date": "2026-04-02",
             "changes": [
-                "Fix: Session lock — libera lock da sessao antes de renderizar HTML (corrige skeleton infinito)",
-                "Fix: Timeout 20s nos fragments SPA (mostra erro em vez de travar)",
+                "Fix: session_write_close() no app.php",
+                "Fix: Timeout 20s nos fragments SPA",
                 "Fix: Headers anti-cache no SPA shell"
-            ]
-        },
-        {
-            "version": "2.0.2",
-            "date": "2026-04-01",
-            "changes": [
-                "Fix: Init async restaurado (compatibilidade Igris)",
-                "Fix: Revertido buffer cleanup (conflito zlib)"
             ]
         },
         {
             "version": "2.0.1",
             "date": "2026-04-01",
             "changes": [
-                "Fix: BASE_URL dinamico (corrige CSS/JS na Hostinger)",
-                "Fix: Versao exibida corretamente na pagina de atualizacao",
-                "Fix: Configuracoes update_url e update_token agora salvam",
-                "Perf: Google Fonts carregado async",
-                "Perf: CSS unificado (1 arquivo em vez de 2)",
-                "Perf: Cache busting nos fragments SPA"
+                "Fix: BASE_URL dinamico",
+                "Perf: Google Fonts async, CSS unificado, cache busting"
             ]
         },
         {
             "version": "2.0.0",
             "date": "2026-03-31",
             "changes": [
-                "Versao inicial INDUZI com Igris Framework",
-                "Sistema de atualizacao integrado"
+                "Versao inicial INDUZI com Igris Framework"
             ]
         }
     ]

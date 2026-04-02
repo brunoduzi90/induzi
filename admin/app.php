@@ -31,6 +31,30 @@ if (!$_initialRoute || $_initialRoute === 'app.php') $_initialRoute = 'painel';
 $_appName = defined('APP_NAME') ? APP_NAME : 'INDUZI';
 $_accentColor = defined('APP_ACCENT_COLOR') ? APP_ACCENT_COLOR : '#B8E0C8';
 $_userPrefs = $_SESSION['induzi_user']['preferencias'] ?? [];
+
+// ── SSR: Pre-render initial fragment (eliminates first AJAX request) ──
+$_ssrRouteFiles = [
+    'painel' => 'index.php', 'mensagens' => 'mensagens.php', 'newsletter' => 'newsletter.php',
+    'leads' => 'leads.php', 'configuracoes' => 'configuracoes.php', 'contas' => 'contas.php',
+    'atualizacao' => 'atualizacao.php',
+];
+$_ssrData = null;
+$_ssrFile = $_ssrRouteFiles[$_initialRoute] ?? null;
+if ($_ssrFile && file_exists(__DIR__ . '/pages/' . $_ssrFile)) {
+    global $_spaEmbedMode;
+    $_spaEmbedMode = true;
+    $_GET['fragment'] = '1';
+    try {
+        include __DIR__ . '/pages/' . $_ssrFile;
+        if (is_array($_spaEmbedMode)) {
+            $_ssrData = $_spaEmbedMode;
+        }
+    } catch (Throwable $e) {
+        // SSR failed silently — SPA will fetch via AJAX as fallback
+    }
+    $_spaEmbedMode = null;
+    unset($_GET['fragment']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR" data-theme="escuro">
@@ -64,7 +88,7 @@ if ($_customCss): ?>
 <?php $_sbForSpa = true; $_sbBase = $_adminBase; include __DIR__ . '/../includes/sidebar.php'; ?>
     <!-- Main Content -->
     <div class="main-content" role="main">
-        <div id="spaContent"></div>
+        <div id="spaContent"><?php if ($_ssrData): ?><?= $_ssrData['html'] ?><?php endif; ?></div>
     </div>
 </div><!-- /app-layout -->
 
@@ -92,6 +116,9 @@ if ($_customCss): ?>
     window.INDUZI_VERSION = '<?= INDUZI_VERSION ?>';
     window._adminBase = <?= json_encode($_adminBase) ?>;
     window._initialRoute = <?= json_encode($_initialRoute) ?>;
+<?php if ($_ssrData): ?>
+    window._ssrData = <?= json_encode($_ssrData, JSON_UNESCAPED_UNICODE) ?>;
+<?php endif; ?>
 
     IgrisDB.init(window._igrisSession.csrfToken);
     await IgrisAuth.init();
