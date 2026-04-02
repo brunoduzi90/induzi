@@ -7,7 +7,15 @@
 // Path constants
 define('ROOT_PATH', dirname(__DIR__));
 define('PUBLIC_PATH', __DIR__);
-define('BASE_URL', '/Site');
+
+// Auto-detect BASE_URL (works at / or /subdir/)
+$_baseUrl = rtrim(dirname($_SERVER['SCRIPT_NAME']), '/\\');
+// SCRIPT_NAME = /public/index.php → dirname = /public → parent = ''
+// SCRIPT_NAME = /Site/public/index.php → dirname = /Site/public → parent = /Site
+$_baseUrl = dirname($_baseUrl); // go up from /public to project root
+if ($_baseUrl === '\\' || $_baseUrl === '/') $_baseUrl = '';
+define('BASE_URL', $_baseUrl);
+
 define('APP_NAME', 'INDUZI — Design Autoral & Arquitetura de Interiores');
 define('APP_DEBUG', false);
 

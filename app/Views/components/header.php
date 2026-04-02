@@ -1,6 +1,6 @@
 <?php
 $currentPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-$base = defined('BASE_URL') ? BASE_URL : '/Site';
+$base = defined('BASE_URL') ? BASE_URL : '';
 ?>
 <header class="ps-navbar" id="site-header">
     <div class="ps-navbar__inner">

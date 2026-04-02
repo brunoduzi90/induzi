@@ -37,7 +37,7 @@ if (!function_exists('e')) {
  */
 function url(string $path = ''): string
 {
-    $base = defined('BASE_URL') ? BASE_URL : '/Site';
+    $base = defined('BASE_URL') ? BASE_URL : '';
     return rtrim($base, '/') . '/' . ltrim($path, '/');
 }
 

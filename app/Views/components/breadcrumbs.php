@@ -1,5 +1,5 @@
 <?php
-$basePath = trim(defined('BASE_URL') ? BASE_URL : '/Site', '/');
+$basePath = trim(defined('BASE_URL') ? BASE_URL : '', '/');
 $rawPath = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
 // Remove base path prefix (e.g. "Site" when accessed via localhost/Site/)
 if ($basePath && str_starts_with($rawPath, $basePath)) {

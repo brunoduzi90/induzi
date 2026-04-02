@@ -6,11 +6,13 @@
 
 function publicRoute(): void {
     $uri = $_SERVER['REQUEST_URI'];
-    $basePath = '/Site/';
+    $basePath = defined('BASE_URL') ? BASE_URL : '';
 
     // Remove base path e query string
     $path = parse_url($uri, PHP_URL_PATH);
-    $path = str_replace($basePath, '', $path);
+    if ($basePath !== '') {
+        $path = preg_replace('#^' . preg_quote($basePath, '#') . '#', '', $path);
+    }
     $path = trim($path, '/');
 
     // Mapa de rotas -> views
@@ -109,7 +111,7 @@ function renderPublicPage(string $view, array $data = []): void {
  */
 function renderSitemap(): void {
     header('Content-Type: application/xml; charset=utf-8');
-    $base = 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . '/Site';
+    $base = 'http' . (!empty($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['HTTP_HOST'] . (defined('BASE_URL') ? BASE_URL : '');
 
     echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
     echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";
