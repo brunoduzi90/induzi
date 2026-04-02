@@ -1,11 +1,24 @@
 {
-    "version": "2.0.0",
-    "date": "2026-03-31",
+    "version": "2.0.1",
+    "date": "2026-04-01",
     "min_php": "7.4",
-    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.0/induzi-deploy-2.0.0.zip",
-    "file_size": 28761071,
-    "sha256": "8f780c537105db69870e9d312a42d5ba9389a78cd5bcd33b43c33669b98b548e",
+    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.1/induzi-deploy-2.0.1.zip",
+    "file_size": 28694016,
+    "sha256": "423d7d9f8082901d4418b9bed4a8ea3cd0abbf39bcd6bbf443820a0fef88fe56",
     "changelog": [
+        {
+            "version": "2.0.1",
+            "date": "2026-04-01",
+            "changes": [
+                "Fix: BASE_URL dinamico (corrige CSS/JS na Hostinger)",
+                "Fix: Versao exibida corretamente na pagina de atualizacao",
+                "Fix: Configuracoes update_url e update_token agora salvam",
+                "Perf: Google Fonts carregado async (nao bloqueia render)",
+                "Perf: CSS unificado (1 arquivo em vez de 2)",
+                "Perf: Cache busting nos fragments SPA",
+                "Perf: Limpeza de output buffers no fragment.php"
+            ]
+        },
         {
             "version": "2.0.0",
             "date": "2026-03-31",
