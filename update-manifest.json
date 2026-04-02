@@ -1,11 +1,20 @@
 {
-    "version": "2.0.1",
+    "version": "2.0.2",
     "date": "2026-04-01",
     "min_php": "7.4",
-    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.1/induzi-deploy-2.0.1.zip",
-    "file_size": 28694016,
-    "sha256": "423d7d9f8082901d4418b9bed4a8ea3cd0abbf39bcd6bbf443820a0fef88fe56",
+    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.2/induzi-update-2.0.2.zip",
+    "file_size": 28777953,
+    "sha256": "e448cdaeb544dffa4ba09940f82b35e16c4da3e433fbdf8936589f712bf8efbf",
     "changelog": [
+        {
+            "version": "2.0.2",
+            "date": "2026-04-01",
+            "changes": [
+                "Fix: Skeleton infinito no admin (headers anti-cache no SPA shell)",
+                "Fix: Init async restaurado (compatibilidade com Igris original)",
+                "Fix: Revertido buffer cleanup que conflitava com zlib compression"
+            ]
+        },
         {
             "version": "2.0.1",
             "date": "2026-04-01",
@@ -15,8 +24,7 @@
                 "Fix: Configuracoes update_url e update_token agora salvam",
                 "Perf: Google Fonts carregado async (nao bloqueia render)",
                 "Perf: CSS unificado (1 arquivo em vez de 2)",
-                "Perf: Cache busting nos fragments SPA",
-                "Perf: Limpeza de output buffers no fragment.php"
+                "Perf: Cache busting nos fragments SPA"
             ]
         },
         {

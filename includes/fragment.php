@@ -87,11 +87,6 @@ function spaFragmentEnd(): void {
         $scripts = $preloadJs . "\n" . $scripts;
     }
 
-    // Clear any stale output buffers (BOM bytes, whitespace)
-    while (ob_get_level() > 0) {
-        ob_end_clean();
-    }
-
     header('Content-Type: application/json; charset=utf-8');
     echo json_encode([
         'ok'      => true,

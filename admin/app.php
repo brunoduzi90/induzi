@@ -13,6 +13,11 @@ require_once __DIR__ . '/../includes/auth.php';
 
 if (empty($_SESSION['induzi_user']['userId'])) { header('Location: login.php'); exit; }
 
+// Prevent browser/CDN caching of SPA shell (ensures fresh JS versions after deploy)
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
 // Compute admin base path and initial route from clean URL
 $_adminBase = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'])), '/') . '/';
 $_requestPath = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -71,7 +76,7 @@ if ($_customCss): ?>
 
 <!-- Init -->
 <script>
-(function() {
+(async function() {
     window._igrisSession = <?= json_encode([
         'userId'    => $_SESSION['induzi_user']['userId'],
         'nome'      => $_SESSION['induzi_user']['nome'],
@@ -85,7 +90,7 @@ if ($_customCss): ?>
     window._initialRoute = <?= json_encode($_initialRoute) ?>;
 
     IgrisDB.init(window._igrisSession.csrfToken);
-    IgrisAuth.init();
+    await IgrisAuth.init();
     IgrisTheme.init();
     <?php if (!empty($_userPrefs)): ?>
     IgrisTheme.applyCustom(<?= json_encode($_userPrefs, JSON_UNESCAPED_UNICODE) ?>);
