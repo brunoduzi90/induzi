@@ -13,6 +13,10 @@ require_once __DIR__ . '/../includes/auth.php';
 
 if (empty($_SESSION['induzi_user']['userId'])) { header('Location: login.php'); exit; }
 
+// Release session file lock immediately — prevents blocking fragment AJAX requests
+// $_SESSION remains readable in memory, only the file lock is released
+session_write_close();
+
 // Prevent browser/CDN caching of SPA shell (ensures fresh JS versions after deploy)
 header('Cache-Control: no-cache, no-store, must-revalidate');
 header('Pragma: no-cache');
