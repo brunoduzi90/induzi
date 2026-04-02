@@ -22,6 +22,7 @@ var SpaRouter = (function() {
     var _spaContent = null;
     var _spaLoading = null;
     var _spaStyles = null;
+    var _currentController = null;
 
     function _cleanup() {
         if (typeof window._spaCleanup === 'function') {
@@ -42,7 +43,11 @@ var SpaRouter = (function() {
         var config = ROUTES[route];
         if (!config) { console.error('Rota desconhecida:', route); return; }
 
-        if (_loading) return;
+        // Cancel any previous pending request
+        if (_currentController) {
+            _currentController.abort();
+            _currentController = null;
+        }
         _loading = true;
 
         _cleanup();
@@ -54,15 +59,15 @@ var SpaRouter = (function() {
 
         if (!cached) {
             try {
-                var controller = new AbortController();
-                var timeoutId = setTimeout(function() { controller.abort(); }, 15000);
-                // Use native fetch — no custom headers (avoids WAF/ModSecurity blocks)
+                _currentController = new AbortController();
+                var timeoutId = setTimeout(function() { if (_currentController) _currentController.abort(); }, 15000);
                 var res = await fetch(url, {
                     credentials: 'same-origin',
                     cache: 'no-store',
-                    signal: controller.signal
+                    signal: _currentController.signal
                 });
                 clearTimeout(timeoutId);
+                _currentController = null;
                 if (!res.ok) throw new Error('HTTP ' + res.status);
                 var text = await res.text();
                 try {
@@ -75,6 +80,11 @@ var SpaRouter = (function() {
                 cached = data;
                 if (_noCache.indexOf(route) < 0) _cache[url] = data;
             } catch (e) {
+                if (e.name === 'AbortError') {
+                    // If aborted by a NEW navigation, just stop — the new one takes over
+                    if (_currentController) { _loading = false; return; }
+                    // If aborted by timeout, show error
+                }
                 console.error('SpaRouter load error:', e);
                 var msg = e.name === 'AbortError' ? 'Tempo limite excedido. Recarregue a pagina.' : (e.message || 'Tente novamente.');
                 if (_spaContent) _spaContent.innerHTML = '<div class="container" style="padding:40px 20px;text-align:center"><h2 style="margin-bottom:12px">Erro ao carregar</h2><p style="margin-bottom:16px">' + msg + '</p><button class="btn btn-primary" onclick="location.reload()">Recarregar</button></div>';

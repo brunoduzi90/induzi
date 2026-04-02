@@ -1,11 +1,20 @@
 {
-    "version": "2.0.5",
+    "version": "2.0.6",
     "date": "2026-04-02",
     "min_php": "7.4",
-    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.5/induzi-update-2.0.5.zip",
-    "file_size": 28792923,
-    "sha256": "f53a3b86d08ccd3d71befd7124ab7bfde68a2c79dae760a3295df8fb3d260dac",
+    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.6/induzi-update-2.0.6.zip",
+    "file_size": 28792965,
+    "sha256": "d58d8e4c09fdbf46f79dbb0a588666d75e0849cf6b7f516fce1b169119ff82ce",
     "changelog": [
+        {
+            "version": "2.0.6",
+            "date": "2026-04-02",
+            "changes": [
+                "Fix: Skeleton infinito ao navegar — abort-and-restart substitui flag _loading",
+                "Fix: AbortController cancela fetch pendente quando usuario clica em nova pagina",
+                "Fix: Timeout 15s com mensagem de erro e botao recarregar"
+            ]
+        },
         {
             "version": "2.0.5",
             "date": "2026-04-02",
