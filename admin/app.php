@@ -33,7 +33,6 @@ $_userPrefs = $_SESSION['induzi_user']['preferencias'] ?? [];
 (function(){var t=localStorage.getItem('igris_tema');if(t==='claro'||t==='escuro')document.documentElement.setAttribute('data-theme',t);})();
 </script>
 <link rel="stylesheet" href="css/style.css?v=<?= INDUZI_VERSION ?>">
-<link rel="stylesheet" href="css/components.css?v=<?= INDUZI_VERSION ?>">
 <style>:root[data-theme="claro"],:root[data-theme="escuro"]{--color-accent:<?= $_accentColor ?>;--color-accent-hover:<?= $_accentColor ?>dd;--color-accent-light:<?= $_accentColor ?>20;}</style>
 <?php
 $_customCss = '';
@@ -49,8 +48,9 @@ if ($_customCss): ?>
 <style>:root[data-theme="claro"],:root[data-theme="escuro"]{<?= $_customCss ?>}</style>
 <?php endif; ?>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>body,.sidebar,.main-content{font-family:"Space Grotesk","Inter",sans-serif;}</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap"></noscript>
 </head>
 <?php $_sbForSpa = true; $_sbBase = $_adminBase; include __DIR__ . '/../includes/sidebar.php'; ?>
     <!-- Main Content -->
@@ -71,7 +71,7 @@ if ($_customCss): ?>
 
 <!-- Init -->
 <script>
-(async function() {
+(function() {
     window._igrisSession = <?= json_encode([
         'userId'    => $_SESSION['induzi_user']['userId'],
         'nome'      => $_SESSION['induzi_user']['nome'],
@@ -84,7 +84,8 @@ if ($_customCss): ?>
     window._adminBase = <?= json_encode($_adminBase) ?>;
     window._initialRoute = <?= json_encode($_initialRoute) ?>;
 
-    await IgrisAuth.init();
+    IgrisDB.init(window._igrisSession.csrfToken);
+    IgrisAuth.init();
     IgrisTheme.init();
     <?php if (!empty($_userPrefs)): ?>
     IgrisTheme.applyCustom(<?= json_encode($_userPrefs, JSON_UNESCAPED_UNICODE) ?>);

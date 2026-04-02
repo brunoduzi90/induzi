@@ -49,7 +49,7 @@ var SpaRouter = (function() {
         _showLoading();
         _showSkeleton();
 
-        var url = config.url + '?fragment=1';
+        var url = config.url + '?fragment=1&_t=' + Date.now();
         var cached = (_noCache.indexOf(route) < 0) ? _cache[url] : null;
 
         if (!cached) {
