@@ -1,0 +1,40 @@
+# ── INDUZI Routing (portable — works at / or /subdir/) ──
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Block direct access to sensitive backend files
+    RewriteRule ^config\.php$ - [F,L]
+    RewriteRule ^framework\.php$ - [F,L]
+    RewriteRule ^version\.php$ - [F,L]
+    RewriteRule ^includes/ - [F,L]
+    RewriteRule ^gerar-pacote-cli\.php$ - [F,L]
+    RewriteRule ^gerar-manifest\.php$ - [F,L]
+    RewriteRule ^sys_temp/ - [F,L]
+    RewriteRule ^migrations/ - [F,L]
+
+    # Existing files → serve directly
+    RewriteCond %{REQUEST_FILENAME} -f
+    RewriteRule ^ - [L]
+
+    # Existing directories (except root) → serve directly
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule .+ - [L]
+
+    # Admin SPA clean routes → admin/app.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^admin/(.+)$ admin/app.php [L,QSA]
+
+    # Static assets → public/ folder
+    RewriteRule ^(.+\.(?:css|js|png|jpg|jpeg|gif|webp|avif|svg|ico|woff|woff2|ttf|eot|mp4|webm|json|xml|webmanifest|map|txt))$ public/$1 [L]
+
+    # Everything else → public/index.php (PHP router)
+    RewriteRule ^(.*)$ public/index.php [QSA,L]
+</IfModule>
+
+# Block access to sensitive files
+<FilesMatch "\.(env|log|sql|bak)$">
+    Require all denied
+</FilesMatch>
+
+Options -Indexes

@@ -1,0 +1,50 @@
+/* ═══════════════════════════════════════════
+   INDUZI Admin — Component Styles (Igris-based)
+   ═══════════════════════════════════════════ */
+
+/* ── TagList ── */
+.ic-taglist { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.ic-taglist-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ic-tag { display: inline-flex; align-items: center; gap: 4px; padding: 4px 10px; background: var(--color-accent-light); color: var(--color-accent); border-radius: var(--radius-full); font-size: 0.8rem; font-weight: 500; }
+.ic-tag-remove { background: none; border: none; color: inherit; cursor: pointer; font-size: 1rem; line-height: 1; padding: 0 2px; opacity: 0.6; }
+.ic-tag-remove:hover { opacity: 1; }
+.ic-taglist-input { flex: 1; min-width: 120px; padding: 6px 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 0.82rem; outline: none; }
+.ic-taglist-input:focus { border-color: var(--color-accent); }
+
+/* ── Checklist ── */
+.ic-checklist-items { display: flex; flex-direction: column; gap: 4px; margin-bottom: 6px; }
+.ic-checklist-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.82rem; }
+.ic-checklist-item label { display: flex; align-items: center; gap: 8px; cursor: pointer; flex: 1; }
+.ic-checklist-item.done label span { text-decoration: line-through; color: var(--text-muted); }
+.ic-checklist-item input[type="checkbox"] { accent-color: var(--color-accent); }
+.ic-checklist-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; padding: 0 4px; }
+.ic-checklist-remove:hover { color: var(--color-danger); }
+.ic-checklist-input { width: 100%; padding: 6px 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 0.82rem; outline: none; }
+.ic-checklist-input:focus { border-color: var(--color-accent); }
+
+/* ── KeyValue ── */
+.ic-keyvalue-items { display: flex; flex-direction: column; gap: 6px; margin-bottom: 6px; }
+.ic-keyvalue-row { display: flex; gap: 8px; align-items: center; }
+.ic-kv-key, .ic-kv-val { flex: 1; padding: 6px 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); color: var(--text-primary); font-size: 0.82rem; outline: none; }
+.ic-kv-key:focus, .ic-kv-val:focus { border-color: var(--color-accent); }
+.ic-kv-key { max-width: 40%; }
+.ic-keyvalue-remove { background: none; border: none; color: var(--text-muted); cursor: pointer; font-size: 1rem; }
+.ic-keyvalue-remove:hover { color: var(--color-danger); }
+.ic-keyvalue-add { background: none; border: 1px dashed var(--border); border-radius: var(--radius-sm); padding: 6px 12px; color: var(--text-muted); font-size: 0.8rem; cursor: pointer; transition: all 0.12s; }
+.ic-keyvalue-add:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ── MultiSelect ── */
+.ic-multiselect { display: flex; flex-wrap: wrap; gap: 6px; }
+.ic-chip { padding: 6px 14px; background: var(--bg-tertiary); border: 1px solid var(--border); border-radius: var(--radius-full); color: var(--text-secondary); font-size: 0.8rem; font-weight: 500; cursor: pointer; transition: all 0.12s; }
+.ic-chip:hover { border-color: var(--color-accent); }
+.ic-chip.active { background: var(--color-accent-light); border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ── Dropzone ── */
+.ic-dropzone-area { position: relative; border: 2px dashed var(--border); border-radius: var(--radius-md); padding: 24px; text-align: center; cursor: pointer; transition: all 0.15s; }
+.ic-dropzone-area:hover, .ic-dropzone-area.dragover { border-color: var(--color-accent); background: var(--color-accent-light); }
+.ic-dropzone-text { color: var(--text-muted); font-size: 0.85rem; }
+.ic-dropzone-input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.ic-dropzone-preview { display: flex; flex-direction: column; gap: 4px; margin-top: 8px; }
+.ic-dropzone-item { display: flex; align-items: center; justify-content: space-between; padding: 6px 10px; background: var(--bg-primary); border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.8rem; }
+.ic-dropzone-item button { background: none; border: none; color: var(--text-muted); cursor: pointer; }
+.ic-dropzone-item button:hover { color: var(--color-danger); }

@@ -1,0 +1,59 @@
+# Environment & Credentials
+.env
+.env.local
+.env.*.local
+.env.production
+config.php
+
+# Dependencies
+/vendor/
+node_modules/
+
+# Storage (logs, cache, uploads, backups)
+/storage/logs/*
+/storage/cache/*
+/storage/uploads/*
+/storage/backups/*
+!/storage/logs/.gitkeep
+!/storage/cache/.gitkeep
+!/storage/uploads/.gitkeep
+!/storage/backups/.gitkeep
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# OS
+*.tmp
+*.bak
+*.log
+
+# Compiled/built assets
+/public/assets/build/
+/public/assets/dist/
+
+# Temp (update system)
+sys_temp/
+
+# PHP
+composer.lock
+
+# Dev-only directories
+/002/
+/sections/
+/.claude/
+
+# Dev-only files
+deploy.php
+gerar-pacote-cli.php
+gerar-manifest.php
+DOCUMENTACAO.md
+documentacao-completa.html
+passo-a-passo.html
+nul

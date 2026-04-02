@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" fill="none" stroke="#B8E0C8" stroke-width="1.5" opacity="0.12">
+  <!-- Encosto -->
+  <path d="M80 40 Q150 20 220 40 L210 180 Q150 170 90 180 Z"/>
+  <!-- Assento -->
+  <rect x="75" y="180" width="150" height="14" rx="3"/>
+  <!-- Pernas traseiras -->
+  <line x1="90" y1="194" x2="80" y2="350"/>
+  <line x1="210" y1="194" x2="220" y2="350"/>
+  <!-- Pernas dianteiras -->
+  <line x1="100" y1="194" x2="95" y2="320"/>
+  <line x1="200" y1="194" x2="205" y2="320"/>
+  <!-- Travessa -->
+  <line x1="88" y1="280" x2="212" y2="280"/>
+</svg>

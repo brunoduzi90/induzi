@@ -1,0 +1,192 @@
+/* ==========================================================================
+   Poison Studio Design System — Design Tokens
+   Dark, bold, experimental. Manchester-born creative agency aesthetic.
+   ========================================================================== */
+
+:root {
+  /* -----------------------------------------------------------------------
+     Colors — Brand
+     ----------------------------------------------------------------------- */
+  --ps-accent: #B8E0C8;          /* Sage green — soft mint */
+  --ps-accent-hover: #D0F0DC;    /* Lighter variant on hover */
+  --ps-accent-muted: #8CB89C;    /* Desaturated variant */
+  --ps-rose: #E8C4C8;            /* Dusty rose — studio section titles */
+
+  /* -----------------------------------------------------------------------
+     Colors — Dark Surfaces
+     ----------------------------------------------------------------------- */
+  --ps-black: #000000;
+  --ps-bg-primary: #0D0D0D;      /* Main background — near-black */
+  --ps-bg-elevated: #141414;     /* Cards, elevated surfaces */
+  --ps-bg-surface: #1A1A1A;      /* Modals, dropdowns */
+  --ps-bg-subtle: #222222;       /* Subtle distinction */
+  --ps-bg-hover: #2A2A2A;        /* Hover states on surfaces */
+
+  /* -----------------------------------------------------------------------
+     Colors — Text
+     ----------------------------------------------------------------------- */
+  --ps-text-primary: #FFFFFF;
+  --ps-text-secondary: #A0A0A0;
+  --ps-text-muted: #666666;
+  --ps-text-disabled: #444444;
+
+  /* -----------------------------------------------------------------------
+     Colors — Borders & Lines
+     ----------------------------------------------------------------------- */
+  --ps-border: #2A2A2A;
+  --ps-border-light: #333333;
+  --ps-border-accent: var(--ps-accent);
+
+  /* -----------------------------------------------------------------------
+     Colors — Functional
+     ----------------------------------------------------------------------- */
+  --ps-success: #4ADE80;
+  --ps-error: #EF4444;
+  --ps-warning: #FBBF24;
+  --ps-info: #60A5FA;
+
+  /* -----------------------------------------------------------------------
+     Colors — Overlay & Effects
+     ----------------------------------------------------------------------- */
+  --ps-overlay: rgba(0, 0, 0, 0.7);
+  --ps-overlay-heavy: rgba(0, 0, 0, 0.85);
+  --ps-glow-accent: rgba(184, 224, 200, 0.15);
+  --ps-glow-strong: rgba(184, 224, 200, 0.3);
+
+  /* -----------------------------------------------------------------------
+     Typography — Font Families
+     ----------------------------------------------------------------------- */
+  --ps-font-heading: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --ps-font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ps-font-mono: 'JetBrains Mono', 'SF Mono', 'Fira Code', 'Cascadia Code', Consolas, monospace;
+
+  /* -----------------------------------------------------------------------
+     Typography — Font Sizes
+     ----------------------------------------------------------------------- */
+  --ps-font-xs: 0.75rem;         /* 12px */
+  --ps-font-sm: 0.875rem;        /* 14px */
+  --ps-font-base: 1rem;          /* 16px */
+  --ps-font-md: 1.125rem;        /* 18px */
+  --ps-font-lg: 1.5rem;          /* 24px */
+  --ps-font-xl: 2rem;            /* 32px */
+  --ps-font-2xl: 2.5rem;         /* 40px */
+  --ps-font-3xl: 3.5rem;         /* 56px */
+  --ps-font-4xl: 5rem;           /* 80px */
+  --ps-font-display: 7rem;       /* 112px — hero-scale */
+
+  /* -----------------------------------------------------------------------
+     Typography — Font Weights
+     ----------------------------------------------------------------------- */
+  --ps-weight-light: 300;
+  --ps-weight-regular: 400;
+  --ps-weight-medium: 500;
+  --ps-weight-semibold: 600;
+  --ps-weight-bold: 700;
+
+  /* -----------------------------------------------------------------------
+     Typography — Line Heights
+     ----------------------------------------------------------------------- */
+  --ps-leading-none: 1;
+  --ps-leading-tight: 1.1;
+  --ps-leading-snug: 1.25;
+  --ps-leading-normal: 1.5;
+  --ps-leading-relaxed: 1.7;
+
+  /* -----------------------------------------------------------------------
+     Typography — Letter Spacing
+     ----------------------------------------------------------------------- */
+  --ps-tracking-tighter: -0.04em;
+  --ps-tracking-tight: -0.02em;
+  --ps-tracking-normal: 0;
+  --ps-tracking-wide: 0.05em;
+  --ps-tracking-wider: 0.1em;
+  --ps-tracking-widest: 0.2em;
+
+  /* -----------------------------------------------------------------------
+     Spacing (base 8px)
+     ----------------------------------------------------------------------- */
+  --ps-space-1: 0.25rem;    /*  4px */
+  --ps-space-2: 0.5rem;     /*  8px */
+  --ps-space-3: 0.75rem;    /* 12px */
+  --ps-space-4: 1rem;       /* 16px */
+  --ps-space-5: 1.25rem;    /* 20px */
+  --ps-space-6: 1.5rem;     /* 24px */
+  --ps-space-8: 2rem;       /* 32px */
+  --ps-space-10: 2.5rem;    /* 40px */
+  --ps-space-12: 3rem;      /* 48px */
+  --ps-space-16: 4rem;      /* 64px */
+  --ps-space-20: 5rem;      /* 80px */
+  --ps-space-24: 6rem;      /* 96px */
+  --ps-space-32: 8rem;      /* 128px */
+
+  /* -----------------------------------------------------------------------
+     Border Radius
+     ----------------------------------------------------------------------- */
+  --ps-radius-none: 0;
+  --ps-radius-sm: 4px;
+  --ps-radius-md: 8px;
+  --ps-radius-lg: 12px;
+  --ps-radius-xl: 16px;
+  --ps-radius-2xl: 24px;
+  --ps-radius-full: 9999px;
+
+  /* -----------------------------------------------------------------------
+     Shadows (subtle on dark)
+     ----------------------------------------------------------------------- */
+  --ps-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --ps-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --ps-shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.5);
+  --ps-shadow-glow: 0 0 20px var(--ps-glow-accent);
+  --ps-shadow-glow-strong: 0 0 40px var(--ps-glow-strong);
+
+  /* -----------------------------------------------------------------------
+     Transitions & Animation Timing
+     ----------------------------------------------------------------------- */
+  --ps-duration-instant: 100ms;
+  --ps-duration-fast: 200ms;
+  --ps-duration-base: 350ms;
+  --ps-duration-slow: 500ms;
+  --ps-duration-intro: 500ms;
+  --ps-duration-exit: 1000ms;
+  --ps-duration-reveal: 800ms;
+  --ps-duration-glitch: 150ms;
+
+  --ps-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ps-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ps-ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ps-ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* -----------------------------------------------------------------------
+     Z-Index Scale
+     ----------------------------------------------------------------------- */
+  --ps-z-base: 1;
+  --ps-z-dropdown: 100;
+  --ps-z-sticky: 200;
+  --ps-z-overlay: 300;
+  --ps-z-modal: 400;
+  --ps-z-tooltip: 500;
+  --ps-z-max: 999;
+
+  /* -----------------------------------------------------------------------
+     Container
+     ----------------------------------------------------------------------- */
+  --ps-container-max: 1400px;
+  --ps-container-padding: var(--ps-space-6);
+  --ps-container-narrow: 800px;
+
+  /* -----------------------------------------------------------------------
+     Scrollbar
+     ----------------------------------------------------------------------- */
+  --ps-scrollbar-width: 10px;
+  --ps-scrollbar-radius: 50px;
+
+  /* -----------------------------------------------------------------------
+     Light Theme (for alternating sections)
+     ----------------------------------------------------------------------- */
+  --ps-light-bg: #F5F5F0;
+  --ps-light-bg-elevated: #EBEBEB;
+  --ps-light-text: #1A1A1A;
+  --ps-light-text-secondary: #555555;
+  --ps-light-text-muted: #888888;
+  --ps-light-border: #D5D5D5;
+}

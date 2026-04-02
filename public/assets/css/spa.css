@@ -1,0 +1,62 @@
+/* -- SPA Progress Bar -- */
+#spa-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    z-index: 99999;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+#spa-progress.active {
+    opacity: 1;
+}
+
+#spa-progress.done .spa-progress-bar {
+    width: 100% !important;
+    transition: width 0.2s;
+}
+
+.spa-progress-bar {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, var(--ps-accent, #B8E0C8), var(--ps-accent-hover, #D0F0DC));
+    border-radius: 0 2px 2px 0;
+    animation: spa-progress-anim 2s ease-in-out infinite;
+    box-shadow: 0 0 8px var(--ps-glow-accent, rgba(184, 224, 200, 0.15));
+}
+
+@keyframes spa-progress-anim {
+    0% { width: 0; }
+    50% { width: 70%; }
+    100% { width: 90%; }
+}
+
+/* -- Skeleton Loading -- */
+.spa-skeleton {
+    padding: 24px 0;
+}
+
+.skeleton-line {
+    background: linear-gradient(90deg,
+        var(--ps-bg-surface, #1A1A1A) 25%,
+        var(--ps-bg-subtle, #222222) 50%,
+        var(--ps-bg-surface, #1A1A1A) 75%
+    );
+    background-size: 200% 100%;
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+    border-radius: 4px;
+}
+
+@keyframes skeleton-shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* -- SPA Content Transition -- */
+#spa-content {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}

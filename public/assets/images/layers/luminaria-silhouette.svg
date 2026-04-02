@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 500" fill="none" stroke="#B8E0C8" stroke-width="1.5" opacity="0.1">
+  <!-- Cupula -->
+  <path d="M90 60 Q150 10 210 60 L200 130 Q150 140 100 130 Z"/>
+  <!-- Haste -->
+  <line x1="150" y1="130" x2="150" y2="400"/>
+  <!-- Base circular -->
+  <ellipse cx="150" cy="420" rx="70" ry="15"/>
+  <!-- Base prato -->
+  <ellipse cx="150" cy="430" rx="50" ry="8"/>
+  <!-- Raios de luz -->
+  <line x1="150" y1="135" x2="120" y2="180" stroke-dasharray="4 4"/>
+  <line x1="150" y1="135" x2="150" y2="185" stroke-dasharray="4 4"/>
+  <line x1="150" y1="135" x2="180" y2="180" stroke-dasharray="4 4"/>
+</svg>

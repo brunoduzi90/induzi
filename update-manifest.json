@@ -1,0 +1,18 @@
+{
+    "version": "2.0.0",
+    "date": "2026-03-31",
+    "min_php": "7.4",
+    "download_url": "https://github.com/OWNER/REPO/releases/download/v2.0.0/induzi-update-2.0.0.zip",
+    "file_size": 28761071,
+    "sha256": "8f780c537105db69870e9d312a42d5ba9389a78cd5bcd33b43c33669b98b548e",
+    "changelog": [
+        {
+            "version": "2.0.0",
+            "date": "2026-03-31",
+            "changes": [
+                "Versao inicial INDUZI com Igris Framework",
+                "Sistema de atualizacao integrado"
+            ]
+        }
+    ]
+}
