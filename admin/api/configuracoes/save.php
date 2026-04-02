@@ -17,6 +17,7 @@ $allowed = [
     'site_instagram', 'site_whatsapp', 'site_facebook', 'site_linkedin',
     'seo_keywords', 'seo_og_image', 'google_analytics',
     'endereco', 'horario_funcionamento',
+    'update_url', 'update_token',
 ];
 
 $db = getDB();

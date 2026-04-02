@@ -3,6 +3,7 @@ require_once __DIR__ . '/../../includes/db.php';
 require_once __DIR__ . '/../../includes/helpers.php';
 require_once __DIR__ . '/../../includes/auth.php';
 require_once __DIR__ . '/../../includes/fragment.php';
+require_once __DIR__ . '/../../version.php';
 spaFragmentStart();
 $session = requireAdmin();
 session_write_close();
