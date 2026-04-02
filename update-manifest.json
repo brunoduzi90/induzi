@@ -1,18 +1,25 @@
 {
-    "version": "2.0.4",
+    "version": "2.0.5",
     "date": "2026-04-02",
     "min_php": "7.4",
-    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.4/induzi-update-2.0.4.zip",
-    "file_size": 28792955,
-    "sha256": "0363f916ce9969243898919f0c44fb0fd4a7b69c5ee5c26feef615bd0d549f79",
+    "download_url": "https://github.com/brunoduzi90/induzi/releases/download/v2.0.5/induzi-update-2.0.5.zip",
+    "file_size": 28792923,
+    "sha256": "f53a3b86d08ccd3d71befd7124ab7bfde68a2c79dae760a3295df8fb3d260dac",
     "changelog": [
+        {
+            "version": "2.0.5",
+            "date": "2026-04-02",
+            "changes": [
+                "Fix: Fragment fetch sem headers customizados (evita bloqueio WAF/ModSecurity Hostinger)",
+                "Fix: Usa fetch nativo com credentials:same-origin e cache:no-store"
+            ]
+        },
         {
             "version": "2.0.4",
             "date": "2026-04-02",
             "changes": [
-                "Fix: SSR — pagina inicial renderizada server-side (sem AJAX, sem skeleton)",
-                "Fix: Headers anti-cache nos fragments (LiteSpeed/Hostinger)",
-                "Fix: fetch com cache:no-store e credentials:same-origin"
+                "Fix: SSR — pagina inicial renderizada server-side",
+                "Fix: Headers anti-cache LiteSpeed nos fragments"
             ]
         },
         {
@@ -20,16 +27,7 @@
             "date": "2026-04-02",
             "changes": [
                 "Fix: session_write_close() no app.php",
-                "Fix: Timeout 20s nos fragments SPA",
-                "Fix: Headers anti-cache no SPA shell"
-            ]
-        },
-        {
-            "version": "2.0.1",
-            "date": "2026-04-01",
-            "changes": [
-                "Fix: BASE_URL dinamico",
-                "Perf: Google Fonts async, CSS unificado, cache busting"
+                "Fix: Timeout 20s nos fragments SPA"
             ]
         },
         {

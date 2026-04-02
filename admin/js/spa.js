@@ -55,14 +55,20 @@ var SpaRouter = (function() {
         if (!cached) {
             try {
                 var controller = new AbortController();
-                var timeoutId = setTimeout(function() { controller.abort(); }, 20000);
-                var res = await IgrisDB.fetch(url, { signal: controller.signal });
+                var timeoutId = setTimeout(function() { controller.abort(); }, 15000);
+                // Use native fetch — no custom headers (avoids WAF/ModSecurity blocks)
+                var res = await fetch(url, {
+                    credentials: 'same-origin',
+                    cache: 'no-store',
+                    signal: controller.signal
+                });
                 clearTimeout(timeoutId);
+                if (!res.ok) throw new Error('HTTP ' + res.status);
                 var text = await res.text();
                 try {
                     var data = JSON.parse(text);
                 } catch (parseErr) {
-                    console.error('SpaRouter: resposta nao e JSON', text.substring(0, 500));
+                    console.error('SpaRouter: resposta nao e JSON', text.substring(0, 200));
                     throw new Error('Resposta invalida do servidor');
                 }
                 if (!data.ok) throw new Error(data.msg || 'Erro ao carregar pagina');
@@ -70,7 +76,7 @@ var SpaRouter = (function() {
                 if (_noCache.indexOf(route) < 0) _cache[url] = data;
             } catch (e) {
                 console.error('SpaRouter load error:', e);
-                var msg = e.name === 'AbortError' ? 'Tempo limite excedido (20s). Tente recarregar a pagina.' : (e.message || 'Tente novamente.');
+                var msg = e.name === 'AbortError' ? 'Tempo limite excedido. Recarregue a pagina.' : (e.message || 'Tente novamente.');
                 if (_spaContent) _spaContent.innerHTML = '<div class="container" style="padding:40px 20px;text-align:center"><h2 style="margin-bottom:12px">Erro ao carregar</h2><p style="margin-bottom:16px">' + msg + '</p><button class="btn btn-primary" onclick="location.reload()">Recarregar</button></div>';
                 _hideLoading();
                 _loading = false;
